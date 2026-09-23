@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - Airport Management</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f8ff;
+            color: #222;
+        }
+
+        .container {
+            width: 94%;
+            max-width: 1200px;
+            margin: 35px auto;
+        }
+
+        .search-box {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1d4ed8;
+            margin-top: 0;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 12px;
+            max-width: 750px;
+            margin: 25px auto 0;
+        }
+
+        .search-form input {
+            flex: 1;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .search-form input:focus {
+            border-color: #2563eb;
+        }
+
+        .search-btn {
+            padding: 13px 22px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .search-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .results-box {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+            overflow-x: auto;
+        }
+
+        .results-box h2 {
+            color: #1d4ed8;
+            margin-top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 750px;
+        }
+
+        th {
+            background: #2563eb;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background: #f7faff;
+        }
+
+        .no-results {
+            text-align: center;
+            color: #777;
+            padding: 20px;
+        }
+
+        @media (max-width: 650px) {
+            .search-form {
+                flex-direction: column;
+            }
+
+            .search-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    {% include 'navbar.html' %}
+
+    <div class="container">
+
+        <div class="search-box">
+
+            <h1>🔍 Search Airport Records</h1>
+
+            <form action="/search" method="GET" class="search-form">
+
+                <input
+                    type="text"
+                    name="q"
+                    placeholder="Search flight, airline, passenger, phone..."
+                    value="{{ search_text }}"
+                >
+
+                <button type="submit" class="search-btn">
+                    🔍 Search
+                </button>
+
+            </form>
+
+        </div>
+
+
+        {% if flights %}
+
+        <div class="results-box">
+
+            <h2>✈️ Flight Results</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Flight Number</th>
+                        <th>Airline</th>
+                        <th>Source</th>
+                        <th>Destination</th>
+                        <th>Departure</th>
+                        <th>Arrival</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for flight in flights %}
+
+                    <tr>
+
+                        <td>
+                            <strong>{{ flight['flight_number'] }}</strong>
+                        </td>
+
+                        <td>{{ flight['airline'] }}</td>
+
+                        <td>{{ flight['source'] }}</td>
+
+                        <td>{{ flight['destination'] }}</td>
+
+                        <td>{{ flight['departure_time'] }}</td>
+
+                        <td>{{ flight['arrival_time'] }}</td>
+
+                        <td>{{ flight['status'] }}</td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% endif %}
+
+
+        {% if passengers %}
+
+        <div class="results-box">
+
+            <h2>👥 Passenger Results</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Phone</th>
+                        <th>Flight Number</th>
+                        <th>Seat Number</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for passenger in passengers %}
+
+                    <tr>
+
+                        <td>
+                            <strong>{{ passenger['name'] }}</strong>
+                        </td>
+
+                        <td>{{ passenger['age'] }}</td>
+
+                        <td>{{ passenger['gender'] }}</td>
+
+                        <td>{{ passenger['phone'] }}</td>
+
+                        <td>{{ passenger['flight_number'] }}</td>
+
+                        <td>{{ passenger['seat_number'] }}</td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% endif %}
+
+
+        {% if search_text and not flights and not passengers %}
+
+        <div class="results-box">
+
+            <div class="no-results">
+                🔎 No matching records found.
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+</html>

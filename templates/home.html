@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airport Management - Home</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eaf4ff, #f8fbff);
+            color: #222;
+        }
+
+        .dashboard {
+            padding: 45px 35px;
+            text-align: center;
+        }
+
+        .dashboard h1 {
+            font-size: 34px;
+            color: #1d4ed8;
+            margin-bottom: 10px;
+        }
+
+        .dashboard p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 35px;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            width: 230px;
+            padding: 28px 20px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+        }
+
+        .card-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .card h2 {
+            margin: 8px 0;
+            font-size: 30px;
+            color: #2563eb;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 17px;
+            color: #444;
+        }
+
+        .quick-actions {
+            margin-top: 45px;
+        }
+
+        .quick-actions h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .action-btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 13px 22px;
+            margin: 8px;
+            border-radius: 9px;
+            background: #2563eb;
+            color: white;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .action-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding: 20px;
+            color: #777;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% include 'navbar.html' %}
+
+    <div class="dashboard">
+
+        <h1>✈️ Airport Management Dashboard</h1>
+
+        <p>
+            Welcome to the Airport Management System.
+            Manage flights and passengers easily.
+        </p>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="card-icon">✈️</div>
+                <h2>{{ total_flights }}</h2>
+                <h3>Total Flights</h3>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">👥</div>
+                <h2>{{ total_passengers }}</h2>
+                <h3>Total Passengers</h3>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🛫</div>
+                <h2>{{ scheduled_flights }}</h2>
+                <h3>Scheduled Flights</h3>
+            </div>
+
+        </div>
+
+        <div class="quick-actions">
+
+            <h2>Quick Actions</h2>
+
+            <a href="/add-flight" class="action-btn">
+                ✈️ Add Flight
+            </a>
+
+            <a href="/flights" class="action-btn">
+                📋 View Flights
+            </a>
+
+            <a href="/add-passenger" class="action-btn">
+                👤 Add Passenger
+            </a>
+
+            <a href="/passengers" class="action-btn">
+                👥 View Passengers
+            </a>
+
+        </div>
+
+        <div class="footer">
+            Airport Management System | Python Flask + SQLite
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Flight - Airport Management</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eaf4ff, #f8fbff);
+            color: #222;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 750px;
+            margin: 40px auto;
+        }
+
+        .form-box {
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #1d4ed8;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-group {
+            flex: 1;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #2563eb;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 9px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media (max-width: 650px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .form-box {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    {% include 'navbar.html' %}
+
+    <div class="container">
+
+        <div class="form-box">
+
+            <h1>✈️ Add New Flight</h1>
+
+            <p class="subtitle">
+                Enter the flight details below
+            </p>
+
+            <form action="/add-flight" method="POST">
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label>Flight Number</label>
+                        <input
+                            type="text"
+                            name="flight_number"
+                            placeholder="Example: AI202"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Airline</label>
+                        <input
+                            type="text"
+                            name="airline"
+                            placeholder="Example: Air India"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label>Source</label>
+                        <input
+                            type="text"
+                            name="source"
+                            placeholder="Example: Vijayawada"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Destination</label>
+                        <input
+                            type="text"
+                            name="destination"
+                            placeholder="Example: Hyderabad"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label>Departure Time</label>
+                        <input
+                            type="text"
+                            name="departure_time"
+                            placeholder="Example: 10:30 AM"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Arrival Time</label>
+                        <input
+                            type="text"
+                            name="arrival_time"
+                            placeholder="Example: 11:45 AM"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Status</label>
+
+                    <select name="status" required>
+
+                        <option value="">Select Status</option>
+                        <option value="Scheduled">Scheduled</option>
+                        <option value="Boarding">Boarding</option>
+                        <option value="Departed">Departed</option>
+                        <option value="Arrived">Arrived</option>
+                        <option value="Cancelled">Cancelled</option>
+
+                    </select>
+
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    ✈️ Add Flight
+                </button>
+
+            </form>
+
+            <a href="/flights" class="back-link">
+                ← Back to Flights
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

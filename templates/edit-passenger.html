@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Passenger - Airport Management</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eaf4ff, #f8fbff);
+            color: #222;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 750px;
+            margin: 40px auto;
+        }
+
+        .form-box {
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #1d4ed8;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-group {
+            flex: 1;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #2563eb;
+        }
+
+        .button-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .update-btn {
+            flex: 1;
+            padding: 13px;
+            border: none;
+            border-radius: 9px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .update-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .cancel-btn {
+            flex: 1;
+            padding: 13px;
+            border-radius: 9px;
+            background: #e5e7eb;
+            color: #333;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .cancel-btn:hover {
+            background: #d1d5db;
+        }
+
+        @media (max-width: 650px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .button-row {
+                flex-direction: column;
+            }
+
+            .form-box {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    {% include 'navbar.html' %}
+
+    <div class="container">
+
+        <div class="form-box">
+
+            <h1>📝 Edit Passenger</h1>
+
+            <p class="subtitle">
+                Update the passenger details below
+            </p>
+
+            <form
+                action="/edit-passenger/{{ passenger['id'] }}"
+                method="POST"
+            >
+
+                <div class="form-group">
+                    <label>Passenger Name</label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        value="{{ passenger['name'] }}"
+                        required
+                    >
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>Age</label>
+
+                        <input
+                            type="number"
+                            name="age"
+                            value="{{ passenger['age'] }}"
+                            min="1"
+                            max="120"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Gender</label>
+
+                        <select name="gender" required>
+
+                            <option value="Male"
+                                {% if passenger['gender'] == 'Male' %}selected{% endif %}>
+                                Male
+                            </option>
+
+                            <option value="Female"
+                                {% if passenger['gender'] == 'Female' %}selected{% endif %}>
+                                Female
+                            </option>
+
+                            <option value="Other"
+                                {% if passenger['gender'] == 'Other' %}selected{% endif %}>
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Phone Number</label>
+
+                    <input
+                        type="tel"
+                        name="phone"
+                        value="{{ passenger['phone'] }}"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>Flight Number</label>
+
+                        <input
+                            type="text"
+                            name="flight_number"
+                            value="{{ passenger['flight_number'] }}"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Seat Number</label>
+
+                        <input
+                            type="text"
+                            name="seat_number"
+                            value="{{ passenger['seat_number'] }}"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="button-row">
+
+                    <button type="submit" class="update-btn">
+                        💾 Update Passenger
+                    </button>
+
+                    <a href="/passengers" class="cancel-btn">
+                        Cancel
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

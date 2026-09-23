@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Airport Management - Register</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(
+                135deg,
+                #dff6ff,
+                #ffffff
+            );
+        }
+
+        body.dark {
+            background: linear-gradient(
+                135deg,
+                #101820,
+                #1d2b36
+            );
+
+            color: white;
+        }
+
+        .register-box {
+            width: 400px;
+            padding: 35px;
+            border-radius: 18px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        body.dark .register-box {
+            background: #263640;
+            color: white;
+        }
+
+        .icon {
+            font-size: 55px;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            color: #087ea4;
+            margin-bottom: 8px;
+        }
+
+        body.dark h1 {
+            color: #5ddcff;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        body.dark .subtitle {
+            color: #ddd;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #087ea4;
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #087ea4;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .register-btn:hover {
+            background: #06647f;
+        }
+
+        .login-link {
+            margin-top: 20px;
+        }
+
+        .login-link a {
+            color: #087ea4;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .theme-buttons {
+            margin-top: 20px;
+        }
+
+        .theme-buttons a {
+            text-decoration: none;
+            margin: 0 5px;
+            padding: 7px 12px;
+            border-radius: 6px;
+            background: #eeeeee;
+            color: #333;
+            font-size: 13px;
+        }
+
+        body.dark .theme-buttons a {
+            background: #45545e;
+            color: white;
+        }
+
+        .error {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 7px;
+            background: #ffe1e1;
+            color: #b00020;
+        }
+
+    </style>
+
+</head>
+
+
+<body class="{{ theme }}">
+
+    <div class="register-box">
+
+        <div class="icon">
+            ✈️
+        </div>
+
+        <h1>Create Account</h1>
+
+        <p class="subtitle">
+            Register for Airport Management System
+        </p>
+
+
+        {% if error %}
+
+        <div class="error">
+            {{ error }}
+        </div>
+
+        {% endif %}
+
+
+        <form action="/registerdemo" method="POST">
+
+            <div class="input-group">
+
+                <label>Full Name</label>
+
+                <input
+                    type="text"
+                    name="fullname"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Username</label>
+
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Create a username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Create a password"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="register-btn"
+            >
+                Register
+            </button>
+
+        </form>
+
+
+        <div class="login-link">
+
+            Already have an account?
+
+            <a href="/login">
+                Login
+            </a>
+
+        </div>
+
+
+        <div class="theme-buttons">
+
+            <a href="/set-theme/light">
+                Light
+            </a>
+
+            <a href="/set-theme/dark">
+                 Dark
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

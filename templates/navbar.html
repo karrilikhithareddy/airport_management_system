@@ -1,0 +1,99 @@
+<nav class="navbar">
+    <div class="nav-brand">
+        ✈️ Airport Management
+    </div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/flights">Flights</a>
+        <a href="/add-flight">Add Flight</a>
+        <a href="/passengers">Passengers</a>
+        <a href="/add-passenger">Add Passenger</a>
+        <a href="/search">Search</a>
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+
+    <div class="nav-user">
+        Welcome, {{ fullname }}
+    </div>
+</nav>
+
+<style>
+    .navbar {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 16px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        font-family: Arial, sans-serif;
+    }
+
+    .nav-brand {
+        font-size: 21px;
+        font-weight: bold;
+        color: #2563eb;
+        white-space: nowrap;
+    }
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: #333;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 9px 12px;
+        border-radius: 8px;
+        transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+        background: #e8f0ff;
+        color: #2563eb;
+    }
+
+    .nav-links .logout-btn {
+        background: #ef4444;
+        color: white;
+    }
+
+    .nav-links .logout-btn:hover {
+        background: #dc2626;
+        color: white;
+    }
+
+    .nav-user {
+        font-size: 14px;
+        font-weight: 600;
+        color: #555;
+        white-space: nowrap;
+    }
+
+    @media (max-width: 1000px) {
+        .navbar {
+            flex-direction: column;
+            padding: 15px;
+        }
+
+        .nav-links {
+            width: 100%;
+        }
+
+        .nav-user {
+            text-align: center;
+        }
+    }
+</style>
